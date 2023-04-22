@@ -2,46 +2,66 @@
 
 while (programExecution)
 {
+    const int ChangeHeight = 1;
+    const int ChangeWidth = 2;
+    const int ChangeTitle = 3;
+    const int ChangeTextColor = 4;
+    const int ExitProgram = 0;
+
     Console.WriteLine("Выберите команду:");
-    Console.WriteLine("1 - Изменить высоту консоли");
-    Console.WriteLine("2 - Изменить ширину консоли");
-    Console.WriteLine("3 - Изменить заголовок консоли");
-    Console.WriteLine("4 - Изменить цвет текста");
-    Console.WriteLine("0 - Выйти");
+    Console.WriteLine($"{ChangeHeight} - Изменить высоту консоли");
+    Console.WriteLine($"{ChangeWidth} - Изменить ширину консоли");
+    Console.WriteLine($"{ChangeTitle} - Изменить заголовок консоли");
+    Console.WriteLine($"{ChangeTextColor} - Изменить цвет текста");
+    Console.WriteLine($"{ExitProgram} - Выйти");
 
     int commandInput = int.Parse(Console.ReadLine());
 
     switch (commandInput)
     {
-        case 1:
+        case ChangeHeight:
             Console.WriteLine("Введите высоту консоли");
             int height = int.Parse(Console.ReadLine());
-            Console.WindowHeight = height;
-            Console.SetWindowSize(Console.WindowWidth, height);
+            if (height <= Console.LargestWindowHeight)
+            {
+                Console.WindowHeight = height;
+                Console.SetWindowSize(Console.WindowWidth, height);
+            }
+            else
+            {
+                Console.WriteLine($"Высота консоли больше максимального значения {Console.LargestWindowHeight}");
+            }
             break;
 
-        case 2:
+        case ChangeWidth:
             Console.WriteLine("Введите ширину консоли");
             int width = int.Parse(Console.ReadLine());
-            Console.WindowWidth = width;
-            Console.SetWindowSize(width, Console.WindowHeight);
+            if (width <= Console.LargestWindowWidth)
+            {
+                Console.WindowWidth = width;
+                Console.SetWindowSize(width, Console.WindowHeight);
+            }
+            else
+            {
+                Console.WriteLine($"Высота консоли больше максимального значения {Console.LargestWindowWidth}");
+            }
             break;
 
-        case 3:
+        case ChangeTitle:
             Console.WriteLine("Введите заголовок");
             string title = Console.ReadLine();
             Console.Title = title;
             break;
 
-        case 4:
-            string textColorGreen = "Зеленый";
-            string textColorRed = "Красный";
-            string textColorYellow = "Желтый";
+        case ChangeTextColor:
+            const string TextColorGreen = "Зеленый";
+            const string TextColorRed = "Красный";
+            const string TextColorYellow = "Желтый";
 
             Console.WriteLine("Выберите цвет текста:");
-            Console.WriteLine($"1 - {textColorGreen}");
-            Console.WriteLine($"2 - {textColorRed}");
-            Console.WriteLine($"3 - {textColorYellow}");
+            Console.WriteLine($"1 - {TextColorGreen}");
+            Console.WriteLine($"2 - {TextColorRed}");
+            Console.WriteLine($"3 - {TextColorYellow}");
 
             int colorChoice = int.Parse(Console.ReadLine());
 
@@ -62,6 +82,6 @@ while (programExecution)
             break;
     }
 
-    if (commandInput == 0) 
+    if (commandInput == ExitProgram)
         programExecution = false;
 }
