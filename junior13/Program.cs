@@ -1,6 +1,6 @@
-﻿bool programExecution = true;
+﻿bool isProgramExecution = true;
 
-while (programExecution)
+while (isProgramExecution)
 {
     const int ChangeHeight = 1;
     const int ChangeWidth = 2;
@@ -54,34 +54,39 @@ while (programExecution)
             break;
 
         case ChangeTextColor:
+            const int TextColorGreenCommand = 1;
+            const int TextColorRedCommand = 2;
+            const int TextColorYellowComand = 3;
+
             const string TextColorGreen = "Зеленый";
             const string TextColorRed = "Красный";
             const string TextColorYellow = "Желтый";
 
             Console.WriteLine("Выберите цвет текста:");
-            Console.WriteLine($"1 - {TextColorGreen}");
-            Console.WriteLine($"2 - {TextColorRed}");
-            Console.WriteLine($"3 - {TextColorYellow}");
+            Console.WriteLine($"{TextColorGreenCommand} - {TextColorGreen}");
+            Console.WriteLine($"{TextColorRedCommand} - {TextColorRed}");
+            Console.WriteLine($"{TextColorYellowComand} - {TextColorYellow}");
 
             int colorChoice = int.Parse(Console.ReadLine());
 
             switch (colorChoice)
             {
-                case 1:
+                case TextColorGreenCommand:
                     Console.ForegroundColor = ConsoleColor.Green;
                     break;
 
-                case 2:
+                case TextColorRedCommand:
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
 
-                case 3:
+                case TextColorYellowComand:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     break;
             }
             break;
-    }
 
-    if (commandInput == ExitProgram)
-        programExecution = false;
+        case ExitProgram:
+            isProgramExecution = false;
+            break;
+    }      
 }
